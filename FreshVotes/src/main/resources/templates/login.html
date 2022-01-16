@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Fresh Votes - login</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+	integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+	crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#createAccount").click(function() {
+				window.location.href = "/register";
+			});
+		});
+	</script>
+</head>
+<body>
+	<form action="" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}">
+		<fieldset>
+			<legend>Please Login</legend>
+			<div th:if="${param.error != null}">Failed to login.</div>
+			<div th:if="${param.logout != null}">You have been logged out.
+			</div>
+			<p>
+				<label for="username">Username</label> <input type="text"
+					id="username" name="username" />
+			</p>
+			<p>
+				<label for="password">Password</label> <input type="password"
+					id="password" name="password" />
+			</p>
+			<div>
+				<button type="submit" class="btn">Log in</button>
+				<button type="button" class="btn" id="createAccount">Create Account</button>
+			</div>
+		</fieldset>
+	</form>
+
+</body>
+</html>
