@@ -2,16 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
+<script type="text/javascript" th:replace ="fragments/header :: lib"></script>
 <title>Fresh Votes - dashboard</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Dashboard</h1>
-	<a th:href="@{/}">Home</a>
-	<form action="/logout" method="post">
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		<button type="submit">logout</button>
-	</form>
+<div th:replace ="~{fragments/header :: PageNav}"></div>
+	<div class="container">
+
+		<div class="row mt-5">
+			<div class="col-8">
+				<h1>Dashboard</h1>
+				<form action="/products" method="post" class="mt-2">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					<button type="submit" id="createProduct" class="btn btn-dark">Create a Product</button>
+				</form>
+				<div class="col-8 mt-2">
+					<div class="row" th:each="product : ${products}">
+						<a th:href="@{/products/{id}(id=${product.id})}" th:text="|${product.name}|"></a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </body>
 </html>

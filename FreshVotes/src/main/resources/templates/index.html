@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<script type="text/javascript" th:replace ="fragments/header :: lib"></script>
 <title>Fresh Votes - home</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Welcome</h1>
-	<a th:href="@{/dashboard}">Dashboard</a>
-	<form action="/logout" method="post">
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		<button type="submit">logout</button>
-	</form>
+    <div th:replace ="~{fragments/header :: PageNav}"></div>
+	<div class="container">
+	     <div class="row mt-5">
+	     	<div class="col-8">
+	     		<h1>Welcome</h1>
+	     	</div>
+	     </div>
+	</div>
+	<script type="text/javascript">
+		let login = document.getElementById('login')
+		login.addEventListener('click', function() {
+			window.location.href = "/login";
+		})
+	</script>
 </body>
 </html>
