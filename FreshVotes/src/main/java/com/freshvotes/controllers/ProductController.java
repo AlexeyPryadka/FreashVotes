@@ -1,5 +1,4 @@
 package com.freshvotes.controllers;
-
 import java.io.IOException;
 import java.util.Optional;
 
@@ -35,12 +34,11 @@ public class ProductController {
 
 	@GetMapping("/products/{id}")
 	public String getProduct(@PathVariable Long id, ModelMap model, HttpServletResponse response) throws IOException {
-		Optional<Product> productOpt = productService.findByIdWithUser(id);
-
-		if (productOpt.isPresent()) {
-			model.put("product", productOpt.get());
-		} else {
+		Optional<Product> product =  productService.findByIdWithUser(id);
+		if (!product.isPresent()) {
 			response.sendError(HttpStatus.NOT_FOUND.value(), "Product with id " + id + " was not found");
+		}else {
+			model.put("product", productService.findByIdWithUser(id));
 		}
 
 		return "product";
