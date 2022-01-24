@@ -13,6 +13,7 @@ import com.freshvotes.services.UserService;
 @Controller
 public class LoginController {
 	
+	
 	private UserService userService;
 	
 	@Autowired
